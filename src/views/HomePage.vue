@@ -296,7 +296,7 @@ watch(selectedCategory, () => {
               <!-- Like Button -->
               <button
                 @click="toggleLike(article.id, $event)"
-                class="absolute top-4 right-4 p-2 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors z-10"
+                class="absolute top-4 right-4 p-2 rounded-full text-red-500 bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors z-10"
                 :class="{ 'text-red-500': likedArticles.has(article.id) }"
               >
                 <component
