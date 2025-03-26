@@ -118,7 +118,7 @@ const shareArticle = async () => {
 
   try {
     await navigator.clipboard.writeText(window.location.href)
-    alert('Link copied to clipboard!')
+    alert(t('common.copy'))
   } catch (err) {
     console.error('Clipboard error:', err)
     prompt('Copy this link to share:', window.location.href)
@@ -275,7 +275,7 @@ const readingTime = computed(() => {
                 <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
                 <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
               </div>
-              <span class="sr-only">Loading...</span>
+              <span class="sr-only">...</span>
             </div>
 
 

@@ -71,7 +71,8 @@
     "checkBack": "Estamos trabajando en agregar más contenido. ¡Vuelve pronto!",
     "scrollToTop": "Volver arriba",
     "pageNotFound": "Página no encontrada",
-    "goBack": "Volver"
+    "goBack": "Volver,",
+    "copy": "Enlace copiado al portapapeles!"
 
   }
 }

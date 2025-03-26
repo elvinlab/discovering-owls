@@ -85,14 +85,18 @@ These owls employ a methodical hunting approach:
 3. Strike with deadly precision using powerful talons
 
 Their success rate in complete darkness can exceed 85%, making them one of nature's most efficient hunters.`,
-    featuredImage: 'https://images.unsplash.com/photo-1579591919791-0e3737ae3808?auto=format&fit=crop&w=1200',
+    featuredImage: 'https://brinzal.org/wp-content/uploads/2023/03/Lechuza.jpg',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1579591919791-0e3737ae3808?auto=format&fit=crop&w=1200',
+        url: 'https://brinzal.org/wp-content/uploads/2023/03/Lechuza.jpg',
         caption: 'A Barn Owl perched on a wooden beam, showcasing its distinctive heart-shaped face'
       },
       {
-        url: 'https://images.unsplash.com/photo-1602523961358-f9f03dd557db?auto=format&fit=crop&w=1200',
+        url: 'https://inaturalist-open-data.s3.amazonaws.com/photos/165796940/large.jpg',
+        caption: 'Barn Owl in flight, demonstrating its silent hunting technique'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Barn_Owl%2C_Lancashire.jpg',
         caption: 'Barn Owl in flight, demonstrating its silent hunting technique'
       }
     ],
@@ -130,5 +134,76 @@ Their success rate in complete darkness can exceed 85%, making them one of natur
     publishDate: new Date('2023-05-15'),
     scientificNames: ['Tyto alba'],
 
+  },
+  {
+    id: '2',
+    slug: 'snowy-owl-arctic-adaptations',
+    title: {
+      en: 'The Snowy Owl: Arctic Majesty',
+      es: 'El Búho Nival: Majestad del Ártico',
+      pt: 'A Coruja-das-neves: Majestade do Ártico'
+    },
+    excerpt: {
+      en: 'Explore the life of the Snowy Owl, a stunning white predator perfectly adapted to the harsh Arctic tundra.',
+      es: 'Explora la vida del Búho Nival, un impresionante depredador blanco perfectamente adaptado a la dura tundra ártica.',
+      pt: 'Explore a vida da Coruja-das-neves, um impressionante predador branco perfeitamente adaptado à dura tundra ártica.'
+    },
+    content: `# The Arctic's White Guardian
+
+  The *Bubo scandiacus*, or Snowy Owl, is one of the most recognizable owl species due to its striking white plumage. These magnificent birds are perfectly adapted to life in the Arctic regions.
+
+  ## Physical Adaptations
+
+  - **Thick plumage**: Provides insulation against temperatures as low as -50°C
+  - **Feathered feet**: Act as natural snowshoes and keep toes warm
+  - **Yellow eyes**: Among the most acute in the owl family, adapted to the 24-hour daylight of Arctic summers
+
+  ## Hunting Behavior
+
+  Unlike most owls, Snowy Owls are diurnal (active during day), especially in summer when the Arctic has continuous daylight. They primarily hunt:
+  - Lemmings (can consume up to 1,600 per year)
+  - Arctic hares
+  - Small birds
+
+  ## Conservation Status
+
+  Classified as Vulnerable by IUCN due to climate change affecting their Arctic habitat and prey availability.`,
+    featuredImage: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Snowy_Owl_%28240866707%29.jpeg',
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Snowy_Owl_%28240866707%29.jpeg',
+        caption: 'Snowy Owl perched on a snow-covered rock'
+      },
+      {
+        url: 'https://www.allaboutbirds.org/news/wp-content/uploads/2020/07/STanager_Jerry-Smith.jpg',
+        caption: 'Snowy Owl in flight over tundra'
+      }
+    ],
+    author: {
+      id: '2',
+      name: 'Carlos Méndez',
+      avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzRFQkY1NSIvPjx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q008L3RleHQ+PC9zdmc+',
+      bio: {
+        en: 'Arctic wildlife specialist',
+        es: 'Especialista en fauna ártica',
+        pt: 'Especialista em vida selvagem ártica'
+      }
+    },
+    rating: 4.8,
+    readingTime: 7,
+    likes: 210,
+    categories: [
+      {
+        id: 'species',
+        name: {
+          en: 'Species',
+          es: 'Especies',
+          pt: 'Espécies'
+        }
+      }
+    ],
+    publishDate: new Date('2023-06-20'),
+    scientificNames: ['Bubo scandiacus']
   }
+
 ]
