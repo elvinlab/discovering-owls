@@ -1,53 +1,50 @@
-import type { Article, Author, Category } from './types'
+import type { Article, Category } from './types'
 
 export const categories: Category[] = [
   {
     id: 'species',
-    name: 'Species',
+    name: {
+      en: 'Species',
+      es: 'Especies',
+      pt: 'Espécies'
+    },
     icon: '🔍'
   },
   {
     id: 'behavior',
-    name: 'Behavior',
+    name: {
+      en: 'Behavior',
+      es: 'Comportamiento',
+      pt: 'Comportamento'
+    },
     icon: '🦅'
   },
   {
     id: 'adaptation',
-    name: 'Adaptation',
+    name: {
+      en: 'Adaptation',
+      es: 'Adaptación',
+      pt: 'Adaptação'
+    },
     icon: '🌿'
   },
   {
     id: 'conservation',
-    name: 'Conservation',
+    name: {
+      en: 'Conservation',
+      es: 'Conservación',
+      pt: 'Conservação'
+    },
     icon: '🌍'
   },
   {
     id: 'mythology',
-    name: 'Mythology',
+    name: {
+      en: 'Mythology',
+      es: 'Mitología',
+      pt: 'Mitologia'
+    },
     icon: '📚'
-  }
-]
-
-export const authors: Author[] = [
-  {
-    id: '1',
-    name: 'Jane Smith',
-    avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzY0NzQ4QiIvPjx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SlM8L3RleHQ+PC9zdmc+',
-    bio: {
-      en: 'Wildlife biologist and science writer',
-      es: 'Bióloga de vida silvestre y escritora científica',
-      pt: 'Bióloga da vida selvagem e escritora científica'
-    }
-  },
-  {
-    id: '2',
-    name: 'John Doe',
-    avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzk0QTNCOCIvPjx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SkQ8L3RleHQ+PC9zdmc+',
-    bio: {
-      en: 'Nature photographer and bird enthusiast',
-      es: 'Fotógrafo de la naturaleza y entusiasta de las aves',
-      pt: 'Fotógrafo da natureza e entusiasta de aves'
-    }
   }
 ]
 
@@ -55,8 +52,16 @@ export const articles: Article[] = [
   {
     id: '1',
     slug: 'barn-owl-hunting-techniques',
-    title: 'The Barn Owl: Silent Hunter of the Night',
-    excerpt: 'Discover how barn owls use their exceptional hearing to hunt in complete darkness',
+    title: {
+      en: 'Barn Owl Hunting Techniques',
+      es: 'Técnicas de Caza del Búho Campestre',
+      pt: 'Técnicas de Caça da Coruja-das-torres'
+    },
+    excerpt: {
+      en: 'Discover the hunting mastery of the Barn Owl, a nocturnal predator with exceptional hearing abilities and silent flight technology.',
+      es: 'Descubre el dominio de caza del Búho Campestre, un depredador nocturno con habilidades auditivas excepcionales y tecnología de vuelo silencioso.',
+      pt: 'Descubra a maestria de caça da Coruja-das-torres, um predador noturno com habilidades auditivas excepcionais e tecnologia de voo silencioso.'
+    },
     content: `# The Barn Owl's Hunting Mastery
 
 The *Tyto alba*, commonly known as the Barn Owl, is a remarkable nocturnal hunter that has evolved specialized adaptations for silent flight and precise hearing. These adaptations make it one of the most efficient nighttime predators in the world.
@@ -91,7 +96,16 @@ Their success rate in complete darkness can exceed 85%, making them one of natur
         caption: 'Barn Owl in flight, demonstrating its silent hunting technique'
       }
     ],
-    author: authors[0],
+    author:  {
+      id: '1',
+      name: 'Jane Smith',
+      avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzY0NzQ4QiIvPjx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SlM8L3RleHQ+PC9zdmc+',
+      bio: {
+        en: 'Wildlife biologist and science writer',
+        es: 'Bióloga de vida silvestre y escritora científica',
+        pt: 'Bióloga da vida selvagem e escritora científica'
+      }
+    },
     rating: 4.7,
     readingTime: 6,
     likes: 165,

@@ -1,4 +1,4 @@
-export interface Author {
+ interface Author {
   id: string
   name: string
   avatar: string
@@ -11,7 +11,7 @@ export interface Author {
 
 export interface Category {
   id: string
-  name: string | { en: string; es: string; pt: string }
+  name:  { en: string; es: string; pt: string }
   icon: string
 }
 
@@ -23,8 +23,8 @@ export interface Image {
 export interface Article {
   id: string
   slug: string
-  title: string
-  excerpt: string
+  title: { en: string; es: string; pt: string }
+  excerpt: { en: string; es: string; pt: string }
   content: string
   featuredImage: string
   images: Image[]

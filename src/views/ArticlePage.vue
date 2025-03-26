@@ -8,7 +8,6 @@ import ImageCarousel from '@/components/ImageCarousel.vue'
 import MarkdownIt from 'markdown-it'
 import { useComments } from '@/composables/useComments'
 import CommentItem from '@/components/CommentItem.vue'
-import { useArticle } from '@/composables/useArticle'
 import { useTranslation } from '@/composables/useTranslation'
 import {
   ArrowLeftIcon,
@@ -32,16 +31,7 @@ const article = computed(() =>
   articles.find(a => a.slug === route.params.slug)
 )
 
-const {
-  localizedTitle,
-  localizedExcerpt,
-  localizedContent,
-  localizedCategories,
-  localizedImages,
-  localizedAuthorBio,
-  formattedDate,
-  readingTime
-} = useArticle(article.value)
+
 
 const { comments, addComment, likeComment } = useComments(route.params.slug as string)
 const { translateContent, isTranslating } = useTranslation()
