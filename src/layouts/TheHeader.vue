@@ -123,7 +123,7 @@ const handleSearchBlur = () => {
         <div class="flex items-center ">
           <!-- Theme Toggle -->
           <button @click="toggleTheme"
-            class="px-2 p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            class="mx-4 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             :aria-label="isDark ? t('nav.lightTheme') : t('nav.darkTheme')">
             <SunIcon v-if="isDark" class="w-5 h-5" />
             <MoonIcon v-else class="w-5 h-5" />

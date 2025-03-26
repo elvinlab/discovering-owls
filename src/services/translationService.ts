@@ -90,32 +90,35 @@ export async function translateContent(
   content: TranslationContent,
   targetLanguage: Locale
 ): Promise<void> {
-
   try {
     if (content.articles) {
-      for (const article of content.articles) {
-        if (!article.translations) {
-          article.translations = {}
-        }
-
-        if (!article.translations[targetLanguage]) {
-          article.translations[targetLanguage] = {
-            content: await translateText(article.content, targetLanguage, { preserveFormatting: true })
+      await Promise.all(
+        content.articles.map(async (article) => {
+          if (!article.translations) {
+            article.translations = {}
           }
-        }
 
-
-      }
+          if (!article.translations[targetLanguage]) {
+            article.translations[targetLanguage] = {
+              content: await translateText(article.content, targetLanguage, { preserveFormatting: true })
+            }
+          }
+        })
+      )
     }
+
     if (content.comments) {
-      for (const comment of content.comments) {
-        if (!comment.translations) {
-          comment.translations = {}
-        }
-        if (!comment.translations[targetLanguage]) {
-          comment.translations[targetLanguage] = await translateText(comment.content, targetLanguage)
-        }
-      }
+      await Promise.all(
+        content.comments.map(async (comment) => {
+          if (!comment.translations) {
+            comment.translations = {}
+          }
+
+          if (!comment.translations[targetLanguage]) {
+            comment.translations[targetLanguage] = await translateText(comment.content, targetLanguage)
+          }
+        })
+      )
     }
   } catch (error) {
     console.warn('Translation content error:', error)

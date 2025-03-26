@@ -224,7 +224,7 @@ const readingTime = computed(() => {
 
             <div class="flex items-center gap-3">
               <button @click="toggleBookmark"
-                class="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 hover:scale-105"
+                class="flex items-center dark:text-white gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 hover:scale-105"
                 :class="{ 'text-primary-600 dark:text-primary-400': isBookmarked }">
                 <component :is="isBookmarked ? BookmarkSolidIcon : BookmarkOutlineIcon" class="w-5 h-5" />
                 <span>{{ isBookmarked ? t('article.bookmarked') : t('article.bookmark') }}</span>
@@ -242,7 +242,6 @@ const readingTime = computed(() => {
             <div v-if="!isTranslating"
               class="prose dark:prose-invert dark:text-white prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-primary-600 dark:prose-a:text-primary-400 hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-300 prose-strong:text-gray-900 dark:prose-strong:text-white prose-em:text-gray-700 dark:prose-em:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-white prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:p-4 prose-pre:rounded-lg prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300 prose-blockquote:border-l-4 prose-blockquote:border-primary-500 dark:prose-blockquote:border-primary-400 prose-blockquote:pl-4 prose-blockquote:italic"
               v-html="renderedContent" />
-
 
             <div v-else role="status" v-for="n in 3" :key="n" class="space-y-2.5 animate-pulse max-w-lg">
               <div class="flex items-center w-full py-8">
@@ -277,8 +276,6 @@ const readingTime = computed(() => {
               </div>
               <span class="sr-only">...</span>
             </div>
-
-
 
           </div>
 
@@ -340,9 +337,43 @@ const readingTime = computed(() => {
             </p>
           </div>
 
-          <div class="space-y-6">
+
+          <div class="space-y-6" v-if="!isTranslating">
             <CommentItem v-for="comment in sortedComments" :key="comment.id" :comment="comment" @like="likeComment"
               @reply="addComment" />
+          </div>
+          <div v-else role="status" v-for="n in 3" :key="n" class="space-y-2.5 animate-pulse max-w-lg">
+            <div class="flex items-center w-full py-8">
+              <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+            </div>
+            <div class="flex items-center w-full max-w-[480px]">
+              <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+            </div>
+            <div class="flex items-center w-full max-w-[400px]">
+              <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+              <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+            </div>
+            <div class="flex items-center w-full max-w-[480px]">
+              <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+            </div>
+            <div class="flex items-center w-full max-w-[440px]">
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-32"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+              <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+            </div>
+            <div class="flex items-center w-full max-w-[360px]">
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+              <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+              <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+            </div>
+            <span class="sr-only">...</span>
           </div>
         </section>
       </div>
