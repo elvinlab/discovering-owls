@@ -6,7 +6,6 @@ import { useTheme } from '@/composables/useTheme'
 import { useRouter } from 'vue-router'
 import { articles } from '@/lib/data'
 import { useLanguage } from '@/composables/useLanguage'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import {
   MagnifyingGlassIcon,
   SunIcon,
@@ -18,7 +17,7 @@ import {
 const { t, locale } = useI18n<{ en: string; es: string; pt: string }>()
 const router = useRouter()
 const { isDark, toggleTheme } = useTheme()
-const { isTranslating, translationProgress, translationError, changeLanguage } = useLanguage()
+const { changeLanguage } = useLanguage()
 
 const searchQuery = ref('')
 const isSearchFocused = ref(false)
@@ -34,10 +33,10 @@ const currentLanguage = computed(() =>
   languages.find(lang => lang.code === locale.value) || languages[0]
 )
 
-const setLanguage = async (lang: string) => {
+const setLanguage = (lang: string) => {
   if (lang === locale.value) return
   isLanguageMenuOpen.value = false
-  await changeLanguage(lang, articles)
+  changeLanguage(lang)
 }
 
 const filteredArticles = computed(() => {
@@ -131,29 +130,19 @@ const handleSearchBlur = () => {
 
           <!-- Language Selector -->
           <div class="relative">
-            <button @click="isLanguageMenuOpen = !isLanguageMenuOpen" :disabled="isTranslating"
+            <button @click="isLanguageMenuOpen = !isLanguageMenuOpen"
               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
               <LanguageIcon class="w-5 h-5" />
               <span class="font-medium">{{ currentLanguage.name }}</span>
               <div class="flex items-center">
-                <ChevronDownIcon v-if="!isTranslating" class="w-5 h-5 text-gray-400 transition-transform duration-200"
+                <ChevronDownIcon class="w-5 h-5 text-gray-400 transition-transform duration-200"
                   :class="{ 'rotate-180': isLanguageMenuOpen }" />
-                <LoadingSpinner v-else size="sm" />
+
               </div>
             </button>
 
-            <!-- Translation Progress -->
-            <div v-if="isTranslating"
-              class="absolute -bottom-2 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-700 rounded-full transform translate-y-full overflow-hidden">
-              <div class="h-full bg-primary-500 dark:bg-primary-400 rounded-full transition-all duration-300 ease-out"
-                :style="{ width: `${translationProgress}%` }">
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-              </div>
-            </div>
-
             <!-- Language Menu -->
-            <div v-if="isLanguageMenuOpen && !isTranslating"
+            <div v-if="isLanguageMenuOpen"
               class="absolute right-0 mt-2 w-48 rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 divide-y divide-gray-100 dark:divide-gray-700 z-50">
               <div class="py-1">
                 <button v-for="lang in languages" :key="lang.code" @click="setLanguage(lang.code)"
@@ -165,12 +154,6 @@ const handleSearchBlur = () => {
                   </span>
                 </button>
               </div>
-            </div>
-
-            <!-- Error Message -->
-            <div v-if="translationError"
-              class="absolute top-full left-0 right-0 mt-2 p-2 bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 text-sm rounded-lg z-50">
-              {{ translationError }}
             </div>
           </div>
         </div>
