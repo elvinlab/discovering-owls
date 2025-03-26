@@ -25,8 +25,8 @@ const articlesPerPage = 6
 const isLoading = ref(false)
 
 // Watch for language changes with immediate effect
-watch([locale], async ([newLocale]) => {
-  if (visibleArticles.value.length > 0 && newLocale !== 'en') {
+watch(visibleArticles, () => {
+  if (visibleArticles.value.length > 0 ) {
     try {
 
       // Force a component re-render after translation

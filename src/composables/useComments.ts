@@ -23,10 +23,7 @@ export function useComments(articleId: string) {
           }))
         }))
 
-        // Translate comments if needed
-        if (locale.value !== 'en') {
-          translateContent({ comments: comments.value }, locale.value)
-        }
+        translateContent({ comments: comments.value }, locale.value)
       }
     } catch (err) {
       error.value = 'Failed to load comments'
@@ -64,7 +61,7 @@ export function useComments(articleId: string) {
     saveComments()
 
     // Translate new comment if needed
-    if (locale.value !== 'en') {
+    if (locale.value) {
       translateContent({ comments: [newComment] }, locale.value)
     }
 

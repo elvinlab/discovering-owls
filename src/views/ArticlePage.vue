@@ -39,7 +39,7 @@ const { translateContent, isTranslating } = useTranslation()
 
 // Watch for language changes and translate content
 watch([locale, article], async ([newLocale, currentArticle]) => {
-  if (currentArticle && newLocale !== 'en') {
+  if (currentArticle) {
     await translateContent({
       articles: [currentArticle],
       comments: comments.value
@@ -48,7 +48,11 @@ watch([locale, article], async ([newLocale, currentArticle]) => {
 }, { immediate: true })
 
 const renderedContent = computed(() => {
-  const content = article.value?.content
+  if (!article.value) return ''
+
+  const translatedContent = article.value.translations?.[locale.value]?.content
+  const content = translatedContent || article.value.content
+
   if (!content || typeof content !== 'string') return ''
   return md.render(content)
 })
@@ -101,11 +105,9 @@ const submitComment = async () => {
   })
 
   // Translate the new comment if not in English
-  if (locale.value !== 'en') {
-    await translateContent({
-      comments: [comment]
-    }, locale.value)
-  }
+  await translateContent({
+    comments: [comment]
+  }, locale.value)
 
   newComment.value = ''
   authorName.value = ''
@@ -238,7 +240,7 @@ const readingTime = computed(() => {
 
           <div class="p-6 sm:p-8 lg:p-10">
             <div v-if="!isTranslating"
-              class="prose dark:prose-invert prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-primary-600 dark:prose-a:text-primary-400 hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-300 prose-strong:text-gray-900 dark:prose-strong:text-white prose-em:text-gray-700 dark:prose-em:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-white prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:p-4 prose-pre:rounded-lg prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300 prose-blockquote:border-l-4 prose-blockquote:border-primary-500 dark:prose-blockquote:border-primary-400 prose-blockquote:pl-4 prose-blockquote:italic"
+              class="prose dark:prose-invert dark:text-white prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-primary-600 dark:prose-a:text-primary-400 hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-300 prose-strong:text-gray-900 dark:prose-strong:text-white prose-em:text-gray-700 dark:prose-em:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-white prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:p-4 prose-pre:rounded-lg prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300 prose-blockquote:border-l-4 prose-blockquote:border-primary-500 dark:prose-blockquote:border-primary-400 prose-blockquote:pl-4 prose-blockquote:italic"
               v-html="renderedContent" />
 
 

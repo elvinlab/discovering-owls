@@ -47,7 +47,7 @@ async function translateText(
   targetLanguage: Locale,
   options: TranslationOptions = {}
 ): Promise<string> {
-  if (!text?.trim() || targetLanguage === 'en') {
+  if (!text?.trim()) {
     return text
   }
 
@@ -90,7 +90,6 @@ export async function translateContent(
   content: TranslationContent,
   targetLanguage: Locale
 ): Promise<void> {
-  if (targetLanguage === 'en') return
 
   try {
     if (content.articles) {
