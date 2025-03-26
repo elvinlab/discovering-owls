@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "brand": "🦉🤖 Buo AI Challenge",
+    "home": "Home",
+    "searchPlaceholder": "Search for owl articles...",
+    "noResults": "No articles found matching your search",
+    "tryDifferentSearch": "Try different keywords or browse all articles",
+    "lightTheme": "Switch to light theme",
+    "darkTheme": "Switch to dark theme",
+    "language": "Select language"
+  },
+  "hero": {
+    "title": "Discover Fascinating Owls",
+    "subtitle": "Explore our collection of articles about these magnificent nocturnal birds"
+  },
+  "categories": {
+    "title": "Categories",
+    "all": "All Categories",
+    "species": "Species",
+    "behavior": "Behavior",
+    "adaptation": "Adaptation",
+    "conservation": "Conservation",
+    "mythology": "Mythology",
+    "select": "Filter by {category}",
+    "noArticles": "No Articles in This Category Yet",
+    "tryAnother": "This category will be updated soon with fascinating owl articles. In the meantime, explore other categories or check back later!",
+    "viewAll": "View All Articles",
+    "clearFilter": "Clear Filter",
+    "tryRandom": "Try Another Category"
+  },
+  "article": {
+    "readTime": "{time} min read",
+    "publishedOn": "Published on {date}",
+    "share": "Share this article",
+    "comments": "Comments",
+    "writeComment": "Write a comment",
+    "readMore": "Read More",
+    "readLess": "Show Less",
+    "like": "Like article",
+    "unlike": "Unlike article",
+    "bookmark": "Bookmark",
+    "unbookmark": "Remove bookmark",
+    "bookmarked": "Bookmarked",
+    "sortBy": "Sort by",
+    "sortOptions": {
+      "newest": "Newest First",
+      "oldest": "Oldest First",
+      "mostLiked": "Most Liked"
+    },
+    "imageGallery": "Image Gallery",
+    "views": "{count} views",
+    "back": "Back",
+    "notFound": "Article not found",
+    "returnHome": "Return to Home",
+    "commentSection": {
+      "title": "Comments",
+      "count": "({count})",
+      "sortBy": "Sort by:",
+      "yourName": "Your name",
+      "joinConversation": "Join the conversation...",
+      "characterCount": "{current}/{max} characters",
+      "submit": "Submit Comment",
+      "retry": "Retry"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "noContent": "Content Coming Soon",
+    "checkBack": "We're working on adding more content. Please check back later!",
+    "scrollToTop": "Scroll to top"
+  }
+}

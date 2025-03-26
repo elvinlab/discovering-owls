@@ -1,0 +1,33 @@
+{
+  "name": "discovering-owls",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.15",
+    "vue-router": "^4.2.5",
+    "vue-i18n": "^9.9.0",
+    "@vueuse/core": "^10.7.2",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/forms": "^0.5.7",
+    "markdown-it": "^13.0.1",
+    "@heroicons/vue": "^2.1.1",
+    "openai": "^4.28.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "@types/markdown-it": "^13.0.7",
+    "@vitejs/plugin-vue": "^5.0.3",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.0",
+    "vue-tsc": "^1.8.27"
+  }
+}

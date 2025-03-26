@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "brand": "🦉🤖 Buo AI Challenge",
+    "home": "Inicio",
+    "searchPlaceholder": "Buscar artículos sobre búhos...",
+    "noResults": "No se encontraron artículos",
+    "tryDifferentSearch": "Intenta con diferentes palabras clave",
+    "lightTheme": "Cambiar a tema claro",
+    "darkTheme": "Cambiar a tema oscuro",
+    "language": "Seleccionar idioma"
+  },
+  "hero": {
+    "title": "Descubre Búhos Fascinantes",
+    "subtitle": "Explora nuestra colección de artículos sobre estas magníficas aves nocturnas"
+  },
+  "categories": {
+    "title": "Categorías",
+    "all": "Todas las Categorías",
+    "species": "Especies",
+    "behavior": "Comportamiento",
+    "adaptation": "Adaptación",
+    "conservation": "Conservación",
+    "mythology": "Mitología",
+    "select": "Filtrar por {category}",
+    "noArticles": "No hay artículos en esta categoría",
+    "tryAnother": "Esta categoría se actualizará pronto con fascinantes artículos sobre búhos. Mientras tanto, explora otras categorías o vuelve más tarde.",
+    "viewAll": "Ver Todos los Artículos",
+    "clearFilter": "Limpiar Filtro",
+    "tryRandom": "Probar Otra Categoría"
+  },
+  "article": {
+    "readTime": "{time} min de lectura",
+    "publishedOn": "Publicado el {date}",
+    "share": "Compartir artículo",
+    "comments": "Comentarios",
+    "writeComment": "Escribir un comentario",
+    "readMore": "Leer Más",
+    "readLess": "Mostrar Menos",
+    "like": "Me gusta",
+    "unlike": "Ya no me gusta",
+    "bookmark": "Guardar",
+    "unbookmark": "Quitar de guardados",
+    "bookmarked": "Guardado",
+    "sortBy": "Ordenar por",
+    "sortOptions": {
+      "newest": "Más Recientes",
+      "oldest": "Más Antiguos",
+      "mostLiked": "Más Gustados"
+    },
+    "imageGallery": "Galería de Imágenes",
+    "views": "{count} vistas",
+    "back": "Volver",
+    "notFound": "Artículo no encontrado",
+    "returnHome": "Volver al Inicio",
+    "commentSection": {
+      "title": "Comentarios",
+      "count": "({count})",
+      "sortBy": "Ordenar por:",
+      "yourName": "Tu nombre",
+      "joinConversation": "Únete a la conversación...",
+      "characterCount": "{current}/{max} caracteres",
+      "submit": "Enviar Comentario",
+      "retry": "Reintentar"
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "noContent": "Contenido Próximamente",
+    "checkBack": "Estamos trabajando en agregar más contenido. ¡Vuelve pronto!",
+    "scrollToTop": "Volver arriba"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "brand": "🦉🤖 Buo AI Challenge",
+    "home": "Início",
+    "searchPlaceholder": "Pesquisar artigos sobre corujas...",
+    "noResults": "Nenhum artigo encontrado",
+    "tryDifferentSearch": "Tente palavras-chave diferentes",
+    "lightTheme": "Mudar para tema claro",
+    "darkTheme": "Mudar para tema escuro",
+    "language": "Selecionar idioma"
+  },
+  "hero": {
+    "title": "Descubra Corujas Fascinantes",
+    "subtitle": "Explore nossa coleção de artigos sobre estas magníficas aves noturnas"
+  },
+  "categories": {
+    "title": "Categorias",
+    "all": "Todas as Categorias",
+    "species": "Espécies",
+    "behavior": "Comportamento",
+    "adaptation": "Adaptação",
+    "conservation": "Conservação",
+    "mythology": "Mitologia",
+    "select": "Filtrar por {category}",
+    "noArticles": "Nenhum artigo nesta categoria",
+    "tryAnother": "Esta categoria será atualizada em breve com artigos fascinantes sobre corujas. Enquanto isso, explore outras categorias ou volte mais tarde.",
+    "viewAll": "Ver Todos os Artigos",
+    "clearFilter": "Limpar Filtro",
+    "tryRandom": "Tentar Outra Categoria"
+  },
+  "article": {
+    "readTime": "{time} min de leitura",
+    "publishedOn": "Publicado em {date}",
+    "share": "Compartilhar artigo",
+    "comments": "Comentários",
+    "writeComment": "Escrever um comentário",
+    "readMore": "Ler Mais",
+    "readLess": "Mostrar Menos",
+    "like": "Curtir",
+    "unlike": "Descurtir",
+    "bookmark": "Salvar",
+    "unbookmark": "Remover dos salvos",
+    "bookmarked": "Salvo",
+    "sortBy": "Ordenar por",
+    "sortOptions": {
+      "newest": "Mais Recentes",
+      "oldest": "Mais Antigos",
+      "mostLiked": "Mais Curtidos"
+    },
+    "imageGallery": "Galeria de Imagens",
+    "views": "{count} visualizações",
+    "back": "Voltar",
+    "notFound": "Artigo não encontrado",
+    "returnHome": "Voltar para o Início",
+    "commentSection": {
+      "title": "Comentários",
+      "count": "({count})",
+      "sortBy": "Ordenar por:",
+      "yourName": "Seu nome",
+      "joinConversation": "Participe da conversa...",
+      "characterCount": "{current}/{max} caracteres",
+      "submit": "Enviar Comentário",
+      "retry": "Tentar Novamente"
+    }
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "retry": "Tentar Novamente",
+    "noContent": "Conteúdo em Breve",
+    "checkBack": "Estamos trabalhando para adicionar mais conteúdo. Volte em breve!",
+    "scrollToTop": "Voltar ao topo"
+  }
+}
