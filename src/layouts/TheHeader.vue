@@ -69,7 +69,7 @@ const handleSearchBlur = () => {
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
         <router-link to="/"
-          class="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+          class="text-gray-900 text-2xl dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
           <!-- Mostrar texto en dispositivos móviles -->
           <span class="block sm:hidden">
             {{ t('nav.brand') }}
@@ -90,7 +90,7 @@ const handleSearchBlur = () => {
 
             <!-- Search Results Dropdown -->
             <div v-if="isSearchFocused && searchQuery && filteredArticles.length > 0"
-              class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50">
+              class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50 min-w-[320px] sm:min-w-[400px]">
               <ul class="py-2">
                 <li v-for="article in filteredArticles" :key="article.id" @mousedown="navigateToArticle(article.slug)"
                   class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
@@ -109,6 +109,7 @@ const handleSearchBlur = () => {
                 </li>
               </ul>
             </div>
+
 
             <!-- No Results Message -->
             <div v-if="isSearchFocused && searchQuery && filteredArticles.length === 0"
