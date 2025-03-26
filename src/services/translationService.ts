@@ -1,48 +1,63 @@
-import type { Locale } from 'vue-i18n'
-import type { Article, Author, Category, Image } from '@/types/article'
-import type { Comment } from '@/types/comment'
-import OpenAI from 'openai'
+import type { Locale } from "vue-i18n";
+import type { Article } from "@/types/article";
+import type { Comment } from "@/types/comment";
+import OpenAI from "openai";
 
 interface TranslationOptions {
-  preserveFormatting?: boolean
+  preserveFormatting?: boolean;
 }
 
 interface TranslationContent {
-  articles?: Article[]
-  article?: Article
-  comments?: Comment[]
-  categories?: Category[]
-  authors?: Author[]
+  articles?: Article[];
+  comments?: Comment[];
 }
 
 // Cache translations to avoid redundant calls
-const translationCache = new Map<string, { translation: string; timestamp: number }>()
-const CACHE_DURATION = 1000 * 60 * 60 * 24 // 24 hours
+const translationCache = new Map<
+  string,
+  { translation: string; timestamp: number }
+>();
+const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true
-})
+  dangerouslyAllowBrowser: true,
+});
+
+const languages = [
+  { code: "en", name: "US English" },
+  { code: "es", name: "Spanish (español)" },
+  { code: "pt", name: "Portuguese (português)" },
+];
+
+function getLanguageName(locale: Locale): string {
+  const language = languages.find(lang => lang.code === locale)
+  return language ? language.name : 'US English'
+}
 
 function getCacheKey(text: string, targetLanguage: string): string {
-  return `${text}_${targetLanguage}`
+  return `${text}_${targetLanguage}`;
 }
 
 function getFromCache(text: string, targetLanguage: string): string | null {
-  const key = getCacheKey(text, targetLanguage)
-  const cached = translationCache.get(key)
+  const key = getCacheKey(text, targetLanguage);
+  const cached = translationCache.get(key);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-    return cached.translation
+    return cached.translation;
   }
-  return null
+  return null;
 }
 
-function saveToCache(text: string, targetLanguage: string, translation: string): void {
-  const key = getCacheKey(text, targetLanguage)
+function saveToCache(
+  text: string,
+  targetLanguage: string,
+  translation: string
+): void {
+  const key = getCacheKey(text, targetLanguage);
   translationCache.set(key, {
     translation,
-    timestamp: Date.now()
-  })
+    timestamp: Date.now(),
+  });
 }
 
 async function translateText(
@@ -50,18 +65,19 @@ async function translateText(
   targetLanguage: Locale,
   options: TranslationOptions = {}
 ): Promise<string> {
-  if (!text?.trim() || targetLanguage === 'en') {
-    return text
+  if (!text?.trim()) {
+    return text;
   }
 
   try {
-    const cached = getFromCache(text, targetLanguage)
-    if (cached) return cached
+    const cached = getFromCache(text, targetLanguage);
+    if (cached) return cached;
 
-    let systemPrompt = `You are a professional translator. Translate the following text to ${targetLanguage}. Return ONLY the translated text without any explanations or additional content.`
+    let systemPrompt = `You are a professional translator. Translate the following text to ${getLanguageName(targetLanguage)}. Return ONLY the translated text without any explanations or additional content.`;
 
     if (options.preserveFormatting) {
-      systemPrompt += ' Maintain all formatting, including markdown syntax, line breaks, and special characters.'
+      systemPrompt +=
+        " Maintain all formatting, including markdown syntax, line breaks, and special characters.";
     }
 
     const completion = await openai.chat.completions.create({
@@ -69,23 +85,22 @@ async function translateText(
       messages: [
         {
           role: "system",
-          content: systemPrompt
+          content: systemPrompt,
         },
         {
           role: "user",
-          content: text
-        }
+          content: text,
+        },
       ],
       temperature: 0.3,
-    })
+    });
 
-    const translation = completion.choices[0].message.content || text
-    saveToCache(text, targetLanguage, translation)
-    return translation
-
+    const translation = completion.choices[0].message.content || text;
+    saveToCache(text, targetLanguage, translation);
+    return translation;
   } catch (error) {
-    console.warn('Translation error:', error)
-    return text // Return original text as fallback
+    console.warn("Translation error:", error);
+    return text; // Return original text as fallback
   }
 }
 
@@ -93,86 +108,43 @@ export async function translateContent(
   content: TranslationContent,
   targetLanguage: Locale
 ): Promise<void> {
-  if (targetLanguage === 'en') return
-
   try {
     if (content.articles) {
-      for (const article of content.articles) {
-        if (!article.translations) {
-          article.translations = {}
-        }
+      await Promise.all(
+        content.articles.map(async (article) => {
+          if (!article.translations) {
+            article.translations = {};
+          }
 
-        if (!article.translations[targetLanguage]) {
-          article.translations[targetLanguage] = {
-            title: await translateText(article.title, targetLanguage),
-            excerpt: await translateText(article.excerpt, targetLanguage),
-            content: await translateText(article.content, targetLanguage, { preserveFormatting: true })
+          if (!article.translations[targetLanguage]) {
+            article.translations[targetLanguage] = {
+              content: await translateText(article.content, targetLanguage, {
+                preserveFormatting: true,
+              }),
+            };
           }
-        }
-
-        // Translate image captions
-        for (const image of article.images) {
-          if (!image.translations) {
-            image.translations = {}
-          }
-          if (!image.translations[targetLanguage]) {
-            image.translations[targetLanguage] = {
-              caption: await translateText(image.caption, targetLanguage)
-            }
-          }
-        }
-      }
-    }
-
-    if (content.categories) {
-      for (const category of content.categories) {
-        if (!category.translations) {
-          category.translations = {}
-        }
-        if (!category.translations[targetLanguage]) {
-          category.translations[targetLanguage] = {
-            name: await translateText(category.name, targetLanguage)
-          }
-        }
-      }
-    }
-
-    if (content.authors) {
-      for (const author of content.authors) {
-        if (!author.translations) {
-          author.translations = {}
-        }
-        if (!author.translations[targetLanguage]) {
-          author.translations[targetLanguage] = {
-            bio: await translateText(author.bio, targetLanguage)
-          }
-        }
-      }
+        })
+      );
     }
 
     if (content.comments) {
-      for (const comment of content.comments) {
-        if (!comment.translations) {
-          comment.translations = {}
-        }
-        if (!comment.translations[targetLanguage]) {
-          comment.translations[targetLanguage] = await translateText(comment.content, targetLanguage)
-        }
-
-        if (comment.replies) {
-          for (const reply of comment.replies) {
-            if (!reply.translations) {
-              reply.translations = {}
-            }
-            if (!reply.translations[targetLanguage]) {
-              reply.translations[targetLanguage] = await translateText(reply.content, targetLanguage)
-            }
+      await Promise.all(
+        content.comments.map(async (comment) => {
+          if (!comment.translations) {
+            comment.translations = {};
           }
-        }
-      }
+
+          if (!comment.translations[targetLanguage]) {
+            comment.translations[targetLanguage] = await translateText(
+              comment.content,
+              targetLanguage
+            );
+          }
+        })
+      );
     }
   } catch (error) {
-    console.warn('Translation content error:', error)
+    console.warn("Translation content error:", error);
     // Don't throw error to prevent UI disruption
     // Failed translations will fall back to original text
   }

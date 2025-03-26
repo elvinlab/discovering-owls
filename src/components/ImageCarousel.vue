@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { useSwipe } from '@vueuse/core'
 import BaseImage from '@/components/BaseImage.vue'
 
@@ -87,79 +87,50 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    ref="carouselRef"
-    class="image-carousel relative overflow-hidden rounded-xl bg-gray-800"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-  >
+  <div ref="carouselRef" class="image-carousel relative overflow-hidden rounded-xl bg-gray-800"
+    @mouseenter="isHovered = true" @mouseleave="isHovered = false">
     <!-- Main Image -->
     <div class="aspect-[16/9] relative">
       <transition :name="slideDirection" mode="out-in">
-        <div
-          :key="currentIndex"
-          class="absolute inset-0"
-        >
-          <BaseImage
-            :src="images[currentIndex].url"
-            :alt="images[currentIndex].alt"
-            class="w-full h-full object-cover"
-          />
+        <div :key="currentIndex" class="absolute inset-0">
+          <BaseImage :src="images[currentIndex].url" :alt="images[currentIndex].alt"
+            class="w-full h-full object-cover" />
 
           <!-- Caption -->
-          <div
-            v-if="images[currentIndex].caption"
-            class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent"
-          >
-            <p class="text-white text-sm md:text-base">
-              {{ images[currentIndex].caption }}
-            </p>
+          <div v-if="images[currentIndex].caption"
+            class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+
           </div>
         </div>
       </transition>
     </div>
 
     <!-- Navigation Arrows -->
-    <button
-      @click="previous"
+    <button @click="previous"
       class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-      aria-label="Previous image"
-    >
+      aria-label="Previous image">
       <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
     </button>
 
-    <button
-      @click="next"
+    <button @click="next"
       class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-      aria-label="Next image"
-    >
+      aria-label="Next image">
       <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </button>
 
     <!-- Dots Navigation -->
-    <div
-      class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2"
-      role="tablist"
-      aria-label="Image carousel navigation"
-    >
-      <button
-        v-for="(_, index) in images"
-        :key="index"
-        @click="goToSlide(index)"
-        class="w-2 h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-white/50"
-        :class="[
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2" role="tablist"
+      aria-label="Image carousel navigation">
+      <button v-for="(_, index) in images" :key="index" @click="goToSlide(index)"
+        class="w-2 h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-white/50" :class="[
           currentIndex === index
             ? 'bg-white w-4'
             : 'bg-white/50 hover:bg-white/70'
-        ]"
-        :aria-label="`Go to image ${index + 1}`"
-        :aria-selected="currentIndex === index"
-        role="tab"
-      />
+        ]" :aria-label="`Go to image ${index + 1}`" :aria-selected="currentIndex === index" role="tab" />
     </div>
   </div>
 </template>

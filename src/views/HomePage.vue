@@ -14,13 +14,9 @@ import {
 } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartFilledIcon } from '@heroicons/vue/24/solid'
 import EmptyState from '@/components/EmptyState.vue'
-import { useTranslation } from '@/composables/useTranslation'
-import { useTranslationQueue } from '@/composables/useTranslationQueue'
-import { useArticle } from '@/composables/useArticle'
 
-const { t, locale } = useI18n()
-const { isTranslating } = useTranslation()
-const { addBatchToQueue, isProcessing, queueSize } = useTranslationQueue()
+const { t, locale } = useI18n<{ locale: 'en' | 'es' | 'pt' }>()
+const typedLocale = computed(() => locale.value as 'en' | 'es' | 'pt')
 
 // Initialize visible articles first
 const visibleArticles = ref<typeof articles>([])
@@ -29,10 +25,10 @@ const articlesPerPage = 6
 const isLoading = ref(false)
 
 // Watch for language changes with immediate effect
-watch([locale], async ([newLocale]) => {
-  if (visibleArticles.value.length > 0 && newLocale !== 'en') {
+watch(visibleArticles, () => {
+  if (visibleArticles.value.length > 0 ) {
     try {
-      await addBatchToQueue(visibleArticles.value, newLocale)
+
       // Force a component re-render after translation
       visibleArticles.value = [...visibleArticles.value]
     } catch (error) {
@@ -71,7 +67,7 @@ const categories = computed(() => [
     icon: AcademicCapIcon
   },
   ...availableCategories.map(cat => {
-    const icons = {
+    const icons: Record<'species' | 'behavior' | 'adaptation' | 'conservation' | 'mythology', typeof AcademicCapIcon> = {
       'species': GlobeAltIcon,
       'behavior': HeartIcon,
       'adaptation': BeakerIcon,
@@ -81,7 +77,7 @@ const categories = computed(() => [
     return {
       id: cat.id,
       label: t(`categories.${cat.id}`),
-      icon: icons[cat.id] || AcademicCapIcon
+      icon: icons[cat.id as keyof typeof icons] || AcademicCapIcon
     }
   })
 ])
@@ -109,30 +105,28 @@ useIntersectionObserver(loadMoreRef, ([{ isIntersecting }]) => {
 })
 
 const loadMoreArticles = async () => {
-  if (isLoading.value || isProcessing.value) return
+  if (isLoading.value ) return
 
   isLoading.value = true
 
   try {
-    // Load new batch of articles
-    const start = (currentPage.value - 1) * articlesPerPage
-    const end = start + articlesPerPage
-    const newArticles = filteredArticles.value.slice(start, end)
+    // Simular un retraso de 1 segundo
+    setTimeout(() => {
+      const start = (currentPage.value - 1) * articlesPerPage
+      const end = start + articlesPerPage
+      const newArticles = filteredArticles.value.slice(start, end)
 
-    // Add new articles to visible list
-    visibleArticles.value.push(...newArticles)
-    currentPage.value++
-
-    // Translate new articles if needed
-    if (locale.value !== 'en') {
-      await addBatchToQueue(newArticles, locale.value)
-      // Force a component re-render after translation
-      visibleArticles.value = [...visibleArticles.value]
-    }
+      // Agregar nuevos artículos a la lista visible
+      visibleArticles.value.push(...newArticles)
+      currentPage.value++
+    }, 1000) // 1000 ms = 1 segundo
   } catch (error) {
     console.error('Error loading articles:', error)
   } finally {
-    isLoading.value = false
+    // Asegurarse de que el estado de carga se actualice después del retraso
+    setTimeout(() => {
+      isLoading.value = false
+    }, 1000)
   }
 }
 
@@ -159,15 +153,6 @@ const toggleLike = (articleId: string, event: Event) => {
   localStorage.setItem('articleLikes', JSON.stringify(articleLikes.value))
 }
 
-// Get localized content for each article
-const getLocalizedContent = (article) => {
-  const { localizedTitle, localizedExcerpt, localizedAuthorBio } = useArticle(article)
-  return {
-    title: localizedTitle.value,
-    excerpt: localizedExcerpt.value,
-    authorBio: localizedAuthorBio.value
-  }
-}
 
 // Initialize likes from localStorage
 onMounted(() => {
@@ -305,13 +290,13 @@ watch(selectedCategory, () => {
             <div class="relative aspect-video overflow-hidden">
               <img
                 :src="article.featuredImage"
-                :alt="getLocalizedContent(article).title"
+                :alt="article.title[typedLocale]"
                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
               />
               <!-- Like Button -->
               <button
                 @click="toggleLike(article.id, $event)"
-                class="absolute top-4 right-4 p-2 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors z-10"
+                class="absolute top-4 right-4 p-2 rounded-full text-red-500 bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors z-10"
                 :class="{ 'text-red-500': likedArticles.has(article.id) }"
               >
                 <component
@@ -332,10 +317,10 @@ watch(selectedCategory, () => {
                 </span>
               </div>
               <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                {{ getLocalizedContent(article).title }}
+                {{ article.title[typedLocale] }}
               </h2>
               <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
-                {{ getLocalizedContent(article).excerpt }}
+                {{ article.excerpt[typedLocale] }}
               </p>
               <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
                 <div class="flex items-center">
@@ -357,7 +342,7 @@ watch(selectedCategory, () => {
             <router-link
               :to="{ name: 'article', params: { slug: article.slug }}"
               class="absolute inset-0 z-0"
-              :aria-label="getLocalizedContent(article).title"
+              :aria-label="article.title[typedLocale]"
             />
           </article>
 

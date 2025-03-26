@@ -1,20 +1,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useTranslation } from './useTranslation'
-
-export interface Comment {
-  id: string
-  content: string
-  translations?: Record<string, string>
-  author: {
-    name: string
-    avatar: string
-  }
-  createdAt: Date
-  likes: number
-  parentId?: string
-  replies: Comment[]
-}
+import type { Comment } from '@/types/comment'
 
 export function useComments(articleId: string) {
   const comments = ref<Comment[]>([])
@@ -36,10 +23,7 @@ export function useComments(articleId: string) {
           }))
         }))
 
-        // Translate comments if needed
-        if (locale.value !== 'en') {
-          translateContent({ comments: comments.value }, locale.value)
-        }
+        translateContent({ comments: comments.value }, locale.value)
       }
     } catch (err) {
       error.value = 'Failed to load comments'
@@ -59,52 +43,35 @@ export function useComments(articleId: string) {
   const addComment = (
     content: string,
     author: { name: string; avatar: string },
-    parentId?: string
   ) => {
     const newComment: Comment = {
       id: Date.now().toString(),
       content,
       translations: {},
-      author,
+      author: {
+        id: Date.now().toString(),
+        ...author
+      },
       createdAt: new Date(),
       likes: 0,
-      parentId,
-      replies: []
     }
-    
-    if (parentId) {
-      const parentComment = comments.value.find(c => c.id === parentId)
-      if (parentComment) {
-        parentComment.replies.push(newComment)
-      }
-    } else {
-      comments.value.unshift(newComment)
-    }
-    
+
+    comments.value.unshift(newComment)
+
     saveComments()
 
     // Translate new comment if needed
-    if (locale.value !== 'en') {
+    if (locale.value) {
       translateContent({ comments: [newComment] }, locale.value)
     }
 
     return newComment
   }
 
-  const likeComment = (commentId: string, parentId?: string) => {
-    if (parentId) {
-      const parentComment = comments.value.find(c => c.id === parentId)
-      if (parentComment) {
-        const reply = parentComment.replies.find(r => r.id === commentId)
-        if (reply) {
-          reply.likes++
-        }
-      }
-    } else {
-      const comment = comments.value.find(c => c.id === commentId)
-      if (comment) {
-        comment.likes++
-      }
+  const likeComment = (commentId: string) => {
+    const comment = comments.value.find(c => c.id === commentId)
+    if (comment) {
+      comment.likes++
     }
     saveComments()
   }

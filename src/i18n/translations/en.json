@@ -71,6 +71,7 @@
     "checkBack": "We're working on adding more content. Please check back later!",
     "scrollToTop": "Scroll to top",
     "pageNotFound": "Page not found",
-    "goBack": "Go back"
+    "goBack": "Go back",
+    "copy": "Link copied to clipboard!"
   }
 }
