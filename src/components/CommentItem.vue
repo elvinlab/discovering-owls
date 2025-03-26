@@ -110,62 +110,10 @@ const submitReply = () => {
               </svg>
               <span>{{ comment.likes || '' }}</span>
             </button>
-            <button
-              @click="isReplying = !isReplying"
-              class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors"
-            >
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
-                />
-              </svg>
-              <span>Reply</span>
-            </button>
+
           </div>
 
-          <!-- Reply Form -->
-          <div v-if="isReplying" class="mt-6 bg-white dark:bg-gray-800/50 rounded-lg p-6 shadow-sm">
-            <input
-              v-model="replyAuthor"
-              type="text"
-              placeholder="Your name"
-              class="w-full bg-gray-50 dark:bg-gray-700/50 text-gray-900 dark:text-gray-100 rounded-lg border border-gray-200 dark:border-gray-600 p-3 focus:outline-none focus:border-blue-500 transition-colors mb-4"
-              maxlength="50"
-            />
-            <textarea
-              v-model="replyContent"
-              rows="3"
-              placeholder="Write a reply..."
-              class="w-full bg-gray-50 dark:bg-gray-700/50 text-gray-900 dark:text-gray-100 rounded-lg border border-gray-200 dark:border-gray-600 p-4 focus:outline-none focus:border-blue-500 transition-colors"
-              maxlength="1000"
-            />
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-sm text-gray-500 dark:text-gray-400">
-                {{ replyContent.length }}/1000 characters
-              </span>
-              <div class="space-x-3">
-                <BaseButton
-                  variant="ghost"
-                  @click="isReplying = false"
-                >
-                  Cancel
-                </BaseButton>
-                <BaseButton
-                  variant="primary"
-                  @click="submitReply"
-                  :disabled="!replyContent.trim() || !replyAuthor.trim()"
-                >
-                  Reply
-                </BaseButton>
-              </div>
-            </div>
-            <p v-if="replyError" class="mt-2 text-red-500 dark:text-red-400 text-sm">
-              {{ replyError }}
-            </p>
-          </div>
+
         </div>
       </div>
     </div>

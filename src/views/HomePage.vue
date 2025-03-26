@@ -270,7 +270,7 @@ watch(selectedCategory, () => {
     <!-- Articles Grid or Empty State -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <!-- Categories -->
-      <nav class="sticky top-20 z-30 mb-12 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+      <nav class=" top-20 z-30 mb-12 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
         <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
           <button
             v-for="category in categories"

@@ -1,8 +1,8 @@
 {
   "nav": {
-    "brand": "🦉🤖 Buo AI Challenge",
+    "brand": "🦉",
     "home": "Início",
-    "searchPlaceholder": "Pesquisar artigos sobre corujas...",
+    "searchPlaceholder": "Pesquisar",
     "noResults": "Nenhum artigo encontrado",
     "tryDifferentSearch": "Tente palavras-chave diferentes",
     "lightTheme": "Mudar para tema claro",
@@ -31,7 +31,7 @@
   "article": {
     "readTime": "{time} min de leitura",
     "publishedOn": "Publicado em {date}",
-    "share": "Compartilhar artigo",
+    "share": "Compartilhar",
     "comments": "Comentários",
     "writeComment": "Escrever um comentário",
     "readMore": "Ler Mais",
@@ -69,6 +69,8 @@
     "retry": "Tentar Novamente",
     "noContent": "Conteúdo em Breve",
     "checkBack": "Estamos trabalhando para adicionar mais conteúdo. Volte em breve!",
-    "scrollToTop": "Voltar ao topo"
+    "scrollToTop": "Voltar ao topo",
+    "pageNotFound": "Página não encontrada",
+    "goBack": "Voltar"
   }
 }

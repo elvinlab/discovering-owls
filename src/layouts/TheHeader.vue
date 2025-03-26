@@ -25,9 +25,9 @@ const isSearchFocused = ref(false)
 const isLanguageMenuOpen = ref(false)
 
 const languages = [
-  { code: 'en', name: 'English', label: 'US English' },
-  { code: 'es', name: 'Español', label: 'Spanish' },
-  { code: 'pt', name: 'Português', label: 'Brazilian Portuguese' }
+  { code: 'en', name: 'EN', label: 'US English' },
+  { code: 'es', name: 'ES', label: 'Spanish' },
+  { code: 'pt', name: 'PT', label: 'Brazilian Portuguese' }
 ]
 
 const currentLanguage = computed(() =>
@@ -45,8 +45,8 @@ const filteredArticles = computed(() => {
 
   const query = searchQuery.value.toLowerCase()
   return articles.filter(article =>
-    article.title[locale.value].toLowerCase().includes(query) ||
-    article.excerpt[locale.value].toLowerCase().includes(query)
+    article.title.toLowerCase().includes(query) ||
+    article.excerpt.toLowerCase().includes(query)
   ).slice(0, 5)
 })
 
@@ -70,13 +70,13 @@ const handleSearchBlur = () => {
         <!-- Logo -->
         <router-link
           to="/"
-          class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          class="text-sm text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         >
           {{ t('nav.brand') }}
         </router-link>
 
         <!-- Search -->
-        <div class="flex-1 max-w-xl mx-8">
+        <div class="flex-1 max-w-xl mx-2">
           <div class="relative">
             <input
               v-model="searchQuery"
@@ -105,15 +105,15 @@ const handleSearchBlur = () => {
                   <div class="flex items-center">
                     <img
                       :src="article.featuredImage"
-                      :alt="article.title[locale]"
+                      :alt="article.title"
                       class="w-12 h-12 object-cover rounded"
                     />
                     <div class="ml-3">
                       <h3 class="text-sm font-medium text-gray-900 dark:text-white">
-                        {{ article.title[locale] }}
+                        {{ article.title }}
                       </h3>
                       <p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5 line-clamp-1">
-                        {{ article.excerpt[locale] }}
+                        {{ article.excerpt }}
                       </p>
                     </div>
                   </div>
@@ -132,7 +132,7 @@ const handleSearchBlur = () => {
         </div>
 
         <!-- Actions -->
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center ">
           <!-- Theme Toggle -->
           <button
             @click="toggleTheme"

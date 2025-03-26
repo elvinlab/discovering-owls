@@ -33,13 +33,21 @@ export const authors: Author[] = [
     id: '1',
     name: 'Jane Smith',
     avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzY0NzQ4QiIvPjx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SlM8L3RleHQ+PC9zdmc+',
-    bio: 'Ornithologist specializing in nocturnal birds'
+    bio: {
+      en: 'Wildlife biologist and science writer',
+      es: 'Bióloga de vida silvestre y escritora científica',
+      pt: 'Bióloga da vida selvagem e escritora científica'
+    }
   },
   {
     id: '2',
     name: 'John Doe',
     avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzk0QTNCOCIvPjx0ZXh0IHg9IjIwIiB5PSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SkQ8L3RleHQ+PC9zdmc+',
-    bio: 'Wildlife photographer and owl enthusiast'
+    bio: {
+      en: 'Nature photographer and bird enthusiast',
+      es: 'Fotógrafo de la naturaleza y entusiasta de las aves',
+      pt: 'Fotógrafo da natureza e entusiasta de aves'
+    }
   }
 ]
 
@@ -90,11 +98,19 @@ Their success rate in complete darkness can exceed 85%, making them one of natur
     categories: [
       {
         id: 'species',
-        name: 'Species'
+        name: {
+          en: 'Species',
+          es: 'Especies',
+          pt: 'Espécies'
+        }
       },
       {
         id: 'behavior',
-        name: 'Behavior'
+        name: {
+          en: 'Behavior',
+          es: 'Comportamiento',
+          pt: 'Comportamento'
+        }
       }
     ],
     publishDate: new Date('2023-05-15'),

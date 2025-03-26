@@ -1,8 +1,8 @@
 {
   "nav": {
-    "brand": "🦉🤖 Buo AI Challenge",
+    "brand": "🦉",
     "home": "Inicio",
-    "searchPlaceholder": "Buscar artículos sobre búhos...",
+    "searchPlaceholder": "Buscar",
     "noResults": "No se encontraron artículos",
     "tryDifferentSearch": "Intenta con diferentes palabras clave",
     "lightTheme": "Cambiar a tema claro",
@@ -31,7 +31,7 @@
   "article": {
     "readTime": "{time} min de lectura",
     "publishedOn": "Publicado el {date}",
-    "share": "Compartir artículo",
+    "share": "Compartir",
     "comments": "Comentarios",
     "writeComment": "Escribir un comentario",
     "readMore": "Leer Más",
@@ -69,6 +69,9 @@
     "retry": "Reintentar",
     "noContent": "Contenido Próximamente",
     "checkBack": "Estamos trabajando en agregar más contenido. ¡Vuelve pronto!",
-    "scrollToTop": "Volver arriba"
+    "scrollToTop": "Volver arriba",
+    "pageNotFound": "Página no encontrada",
+    "goBack": "Volver"
+
   }
 }

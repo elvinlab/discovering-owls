@@ -1,8 +1,8 @@
 {
   "nav": {
-    "brand": "🦉🤖 Buo AI Challenge",
+    "brand": "🦉",
     "home": "Home",
-    "searchPlaceholder": "Search for owl articles...",
+    "searchPlaceholder": "Search",
     "noResults": "No articles found matching your search",
     "tryDifferentSearch": "Try different keywords or browse all articles",
     "lightTheme": "Switch to light theme",
@@ -31,7 +31,7 @@
   "article": {
     "readTime": "{time} min read",
     "publishedOn": "Published on {date}",
-    "share": "Share this article",
+    "share": "Share",
     "comments": "Comments",
     "writeComment": "Write a comment",
     "readMore": "Read More",
@@ -69,6 +69,8 @@
     "retry": "Retry",
     "noContent": "Content Coming Soon",
     "checkBack": "We're working on adding more content. Please check back later!",
-    "scrollToTop": "Scroll to top"
+    "scrollToTop": "Scroll to top",
+    "pageNotFound": "Page not found",
+    "goBack": "Go back"
   }
 }

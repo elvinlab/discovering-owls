@@ -2,12 +2,16 @@ export interface Author {
   id: string
   name: string
   avatar: string
-  bio: string
+  bio: {
+    en: string
+    es: string
+    pt: string
+  }
 }
 
 export interface Category {
   id: string
-  name: string
+  name: string | { en: string; es: string; pt: string }
   icon: string
 }
 
