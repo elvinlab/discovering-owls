@@ -1,5 +1,5 @@
 import type { Locale } from 'vue-i18n'
-import type { Article, Author, Category, Image } from '@/types/article'
+import type { Article } from '@/types/article'
 import type { Comment } from '@/types/comment'
 import OpenAI from 'openai'
 
@@ -9,10 +9,7 @@ interface TranslationOptions {
 
 interface TranslationContent {
   articles?: Article[]
-  article?: Article
   comments?: Comment[]
-  categories?: Category[]
-  authors?: Author[]
 }
 
 // Cache translations to avoid redundant calls
@@ -104,52 +101,13 @@ export async function translateContent(
 
         if (!article.translations[targetLanguage]) {
           article.translations[targetLanguage] = {
-            title: await translateText(article.title, targetLanguage),
-            excerpt: await translateText(article.excerpt, targetLanguage),
             content: await translateText(article.content, targetLanguage, { preserveFormatting: true })
           }
         }
 
-        // Translate image captions
-        for (const image of article.images) {
-          if (!image.translations) {
-            image.translations = {}
-          }
-          if (!image.translations[targetLanguage]) {
-            image.translations[targetLanguage] = {
-              caption: await translateText(image.caption, targetLanguage)
-            }
-          }
-        }
+
       }
     }
-
-    if (content.categories) {
-      for (const category of content.categories) {
-        if (!category.translations) {
-          category.translations = {}
-        }
-        if (!category.translations[targetLanguage]) {
-          category.translations[targetLanguage] = {
-            name: await translateText(category.name, targetLanguage)
-          }
-        }
-      }
-    }
-
-    if (content.authors) {
-      for (const author of content.authors) {
-        if (!author.translations) {
-          author.translations = {}
-        }
-        if (!author.translations[targetLanguage]) {
-          author.translations[targetLanguage] = {
-            bio: await translateText(author.bio, targetLanguage)
-          }
-        }
-      }
-    }
-
     if (content.comments) {
       for (const comment of content.comments) {
         if (!comment.translations) {
@@ -157,17 +115,6 @@ export async function translateContent(
         }
         if (!comment.translations[targetLanguage]) {
           comment.translations[targetLanguage] = await translateText(comment.content, targetLanguage)
-        }
-
-        if (comment.replies) {
-          for (const reply of comment.replies) {
-            if (!reply.translations) {
-              reply.translations = {}
-            }
-            if (!reply.translations[targetLanguage]) {
-              reply.translations[targetLanguage] = await translateText(reply.content, targetLanguage)
-            }
-          }
         }
       }
     }

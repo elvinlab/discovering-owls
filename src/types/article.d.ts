@@ -1,49 +1,43 @@
-export interface Author {
-  id: string;
-  name: string;
-  avatar: string;
-  bio: string;
-  translations?: Record<string, {
-    bio: string;
-  }>;
+interface Author {
+  id: string
+  name: string
+  avatar: string
+  bio: {
+    en: string
+    es: string
+    pt: string
+  }
 }
 
 export interface Category {
-  id: string;
-  name: string;
-  translations?: Record<string, {
-    name: string;
-  }>;
+  id: string
+  name:  { en: string; es: string; pt: string }
+  icon: string
 }
 
 export interface Image {
-  url: string;
-  caption: string;
-  translations?: Record<string, {
-    caption: string;
-  }>;
+  url: string
+  caption: string
 }
 
 export interface Article {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  featuredImage: string;
-  images: Image[];
-  author: Author;
-  rating: number;
-  readingTime: number;
-  likes: number;
-  categories: Category[];
-  publishDate: Date;
-  scientificNames?: string[];
+  id: string
+  slug: string
+  title: { en: string; es: string; pt: string }
+  excerpt: { en: string; es: string; pt: string }
+  content: string
+  featuredImage: string
+  images: Image[]
+  author: Author
+  rating: number
+  readingTime: number
+  likes: number
+  categories: Pick<Category, 'id' | 'name'>[]
+  publishDate: Date
+  scientificNames?: string[]
   translations?: Record<string, {
-    title: string;
-    excerpt: string;
     content: string;
   }>;
 }
 
-export type ArticlePreview = Omit<Article, 'content' | 'scientificNames'>;
+export type ArticlePreview = Omit<Article, 'content' | 'images'>

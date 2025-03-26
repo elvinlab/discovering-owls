@@ -9,6 +9,4 @@ export interface Comment {
   };
   createdAt: Date;
   likes: number;
-  parentId?: string;
-  replies?: Comment[];
 }

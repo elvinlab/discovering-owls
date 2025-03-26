@@ -1,5 +1,4 @@
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 import type { Locale } from 'vue-i18n'
 import { translateContent as translateContentService } from '@/services/translationService'
 import type { Article } from '@/types/article'
@@ -7,12 +6,10 @@ import type { Comment } from '@/types/comment'
 
 interface TranslationContent {
   articles?: Article[]
-  article?: Article
   comments?: Comment[]
 }
 
 export function useTranslation() {
-  const { locale } = useI18n()
   const isTranslating = ref(false)
   const translationError = ref<string | null>(null)
   const translationProgress = ref(0)
