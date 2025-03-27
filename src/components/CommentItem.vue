@@ -41,9 +41,7 @@ const formatDate = (date: Date) => {
           class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600 ring-2 ring-gray-200 dark:ring-gray-700/50" />
         <div class="flex-1 min-w-0">
           <div class="flex items-center justify-between mb-3">
-            <span class="font-semibold mr-4 text-gray-900 dark:text-gray-100 truncate">{{ comment.author.name }}
-              gonzalez
-              gonzalez </span>
+            <span class="font-semibold mr-4 text-gray-900 dark:text-gray-100 truncate">{{ comment.author.name }} </span>
             <span class="text-sm text-gray-500 dark:text-gray-400 flex-shrink-0">
               {{ formatDate(comment.createdAt) }}
             </span>
